@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-23T17:30:05+08:00</updated><id>http://localhost:4000/</id><title type="html">阿糯的二三事</title><subtitle>个人博客</subtitle><author><name>true</name></author><entry><title type="html">在项目中使用CDN</title><link href="http://localhost:4000/2020/01/13/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8CDN.html" rel="alternate" type="text/html" title="在项目中使用CDN" /><published>2020-01-13T10:56:16+08:00</published><updated>2020-01-13T10:56:16+08:00</updated><id>http://localhost:4000/2020/01/13/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8CDN</id><content type="html" xml:base="http://localhost:4000/2020/01/13/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8CDN.html">&lt;ul&gt;
+  &lt;li&gt;引入某个依赖的cdn只是为了打包上线之后，可以直接通过 script 的方式去访问这些依赖，因此打包的时候可以不用打包这些依赖，就可以大大的减少包的体积。&lt;/li&gt;
+  &lt;li&gt;【注意】 在开发环境中还需要安装相关的依赖。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;引入cdn：在入口文件使用 script 引入对应依赖对应版本的cdn&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;X-UA-Compatible&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;IE=edge&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Ant Design Pro&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/favicon.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/x-icon&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 引入对应包的cdn --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.0/dist/g2.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;noscript&amp;gt;&lt;/span&gt;Sorry, we need js to run correctly!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/noscript&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;配置 webpack, 使已经引入cdn的包不被打包&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;...,&lt;/span&gt;
+ 
+  &lt;span class=&quot;na&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;libraryTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'umd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!--&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;配置&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;externals&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;将需要忽略打包的都写在这个里面，但前提是&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;文件里面必须&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;引入&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;externals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 后面是原本使用的全局变量名，前面的是引入的包名（就是import xx from 'moment'），然后我们实际写代码时候，用的是xx这个变量名。&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;moment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'moment'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
+    &lt;span class=&quot;s1&quot;&gt;'@antv/g2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'G2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;// webpack就会在遇到引用moment或者@antv/g2的模块时，不将其打包入bundle.js中。所以moment或@antv/g2代表的是模块名，一定不能写错。模块名参照package.json中的包的名称&lt;/span&gt;
+  
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>true</name></author><category term="cdn" /><summary type="html">引入某个依赖的cdn只是为了打包上线之后，可以直接通过 script 的方式去访问这些依赖，因此打包的时候可以不用打包这些依赖，就可以大大的减少包的体积。 【注意】 在开发环境中还需要安装相关的依赖。</summary></entry><entry><title type="html">学习less的笔记</title><link href="http://localhost:4000/2020/01/12/less.html" rel="alternate" type="text/html" title="学习less的笔记" /><published>2020-01-12T10:56:16+08:00</published><updated>2020-01-12T10:56:16+08:00</updated><id>http://localhost:4000/2020/01/12/less</id><content type="html" xml:base="http://localhost:4000/2020/01/12/less.html">&lt;blockquote&gt;
+  &lt;p&gt;原本的笔记有点多且繁琐~自己看的都有点晕，所以只选部分😅&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://less.bootcss.com/functions/&quot;&gt;Less函数手册&lt;/a&gt;
+|&lt;a href=&quot;http://www.maiziedu.com/wiki/css/colour/&quot;&gt;参考&lt;/a&gt;
+|&lt;a href=&quot;https://juejin.im/post/5a2bc28f6fb9a044fe464b19&quot;&gt;参考 SimonMa&lt;/a&gt;
+|&lt;a href=&quot;https://www.html.cn/doc/less/features/#variables-feature&quot;&gt;中文文档&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;循环-loops&quot;&gt;循环 Loops&lt;/h2&gt;
+
+&lt;p&gt;在less中，mixin可以调用自身， 当一个mixin递归调用自己，就能形成循环结构&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;实例&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;// .less文件
+.loop(@count, @percent) when (@count &amp;gt; 0) {
+  .colorPurple@{count} {                 // 生成 count 个类名
+    color: lighten(#a374d5, @percent); // 每次调用时产生的样式代码
+  }
+  .loop((@count - 1), (@percent + 10%)); // 递归调用自身
+}
+
+.test {
+  .loop(10, 10%);
+}
+
+// demo.js中调用
+&amp;lt;div className={style.test}&amp;gt;
+    &amp;lt;div className={style.colorPurple5}&amp;gt;测试&amp;lt;/div&amp;gt; // 此时colorPurple可以调用的挡位有colorPurple1-colorPurple10
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!--得到‘测试’两个字的颜色为 60%的 #a374d5--&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用递归循环生成栅格系统&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;
+.generate-columns(@n, @i: 1) when (@i =&amp;lt; @n) {
+    .column-@{i} {
+        width: (@i * 100% / @n);
+    }
+    .generate-columns(@n, (@i + 1));
+}
+
+// 调用
+.generate-columns(4);
+
+// 输出css
+.column-1 {
+  width: 25%;
+}
+.column-2 {
+  width: 50%;
+}
+.column-3 {
+  width: 75%;
+}
+.column-4 {
+  width: 100%;
+}
+&amp;lt;!--即：再使用的时候，只要调用className=column-n就可以了--&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;遍历&quot;&gt;遍历&lt;/h2&gt;
+
+&lt;p&gt;在less中遍历数组&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;  @colors: red, green, blue, black; // 定义数组元素
+
+  .for(@data, @i: 1) when(@i =&amp;lt; length(@data)) { // length(@data) 获取数组长度
+      @item: extract(@data, @i); // 数组元素取值
+      div {
+          background: @item;
+      }
+      .for(@data, (@i + 1));
+  }
+
+  .for(@colors);
+
+
+  // 输出css
+  div {
+    background: red;
+  }
+  div {
+    background: green;
+  }
+  div {
+    background: blue;
+  }
+  div {
+    background: black;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;合并&quot;&gt;合并&lt;/h2&gt;
+
+&lt;p&gt;可以将同一个属性的值合并，比如 &lt;code class=&quot;highlighter-rouge&quot;&gt;background&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;transform&lt;/code&gt; 之类的属性&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; 代表属性合并的值用逗号隔开&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin() {
+  box-shadow+: inset 0 0 10px #555;
+}
+.myclass {
+  .mixin();
+  box-shadow+: 0 0 20px black;
+}
+
+// 输出css
+.myclass {
+  box-shadow: inset 0 0 10px #555, 0 0 20px black;
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;+_&lt;/code&gt; 表示属性合并的值用空格隔开&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin() {
+  transform+_: scale(2);
+}
+.myclass {
+  .mixin();
+  transform+_: rotate(15deg);
+}
+
+// 输出css
+.myclass {
+  transform: scale(2) rotate(15deg);
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;拼接字符串&quot;&gt;拼接字符串&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;用 ` ‘’ ` 拼接&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@primary-color: #a374d5;
+@color-item: primary;
+
+@color-name: '@{color-item}-color'; // 变量拼接字符串得到 primary-color
+
+color: @@color-name; // color: #a374d5;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;用 &lt;code class=&quot;highlighter-rouge&quot;&gt;~''&lt;/code&gt;拼接，参考 &lt;a href=&quot;https://segmentfault.com/a/1190000007472208&quot;&gt;less变量插值问题&lt;/a&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;// loop start
+.taskSlideBg(@num) when (@num &amp;lt;6){
+  @num2:~&quot;@{num}n&quot;;
+  @color:&quot;mkcolor@{num}&quot;;
+  #mkUser-task-con .mkUser-task-box:nth-child(@{num2}) .mkUser-task-title{background:@@color;}
+  .taskSlideBg((@num+1))
+}
+.taskSlideBg(1);
+// loop end
+
+
+&amp;lt;!--编译--&amp;gt;
+#mkUser-task-con .mkUser-task-box:nth-child(1n) .mkUser-task-title {
+  background: #6ec5ff;
+}
+#mkUser-task-con .mkUser-task-box:nth-child(2n) .mkUser-task-title {
+  background: #ff8365;
+}
+...
+
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用在属性 calc 中&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;// 使用变量
+.class {
+  @cap: 50px;
+  height: calc(~&quot;100% - @{cap}&quot;);
+}
+
+// 得到
+.class {
+  height: calc(~&quot;100% - 50px&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;~&lt;/code&gt; 通常用在拼接变量，使用js方法时在前面添加该符号，如 ~’’ , 和 ~`` ，表示编译完成后去掉后面的引号或者反引号。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;在less中写js&quot;&gt;在less中写js&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;首先配置webpack使less支持编写js, 在options中添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;javascriptEnabled: true&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;less/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;node_modules&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'style-loader'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'css-loader'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;loader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'less-loader'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;javascriptEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 支持js&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;实例
+    &lt;blockquote&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.itread01.com/content/1515159652.html&quot;&gt;参考 @function趣谈&lt;/a&gt; 
+| &lt;a href=&quot;https://www.cnblogs.com/mabylove/p/8206264.html&quot;&gt;几乎相同的另一篇文章&lt;/a&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.paletteMixin() {
+  @functions: ~`(function() {
+    // 方法1
+    this.palette = function(color) { // function()里面传入color
+    return color; // 返回color，则function()里面传入的也是color
+    }
+      
+    // 方法2
+    this.test = function(border-radius) {
+        return border-raduis;
+    }
+      
+  })()`;
+}
+
+// 运行mixin
+.paletteMixin()
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;使用&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@primary-color: #123456
+
+.test {
+  color: color(~`palette(&quot;@{primary-color}&quot;)`);
+  border-radius: ~`test('10px')`
+}
+
+// 得到css
+.test {
+    color: #123456;
+    border-radius: 10px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;编写简单的反色方法&quot;&gt;编写简单的反色方法🍦🍕🌭🌮🌯🥙🍹&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://github.com/bgrins/TinyColor&quot;&gt;颜色工具-TinyColor&lt;/a&gt;
+| &lt;a href=&quot;https://github.com/gre/bezier-easing&quot;&gt;antd中还用了贝塞尔曲线的插件-bezier-easing&lt;/a&gt;，我们不用呢！&lt;strong&gt;🤔&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;引入tinycolor&quot;&gt;引入tinyColor：&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;将&lt;a href=&quot;https://github.com/bgrins/TinyColor/blob/master/tinycolor.js&quot;&gt;tinyColor.js&lt;/a&gt;写入mixins中，从而将&lt;code class=&quot;highlighter-rouge&quot;&gt;tinyColor.js&lt;/code&gt;转化为&lt;code class=&quot;highlighter-rouge&quot;&gt;tinyColor.less&lt;/code&gt;,最后在其他less文件中引入 &lt;code class=&quot;highlighter-rouge&quot;&gt;tinyColor.less&lt;/code&gt;。（这里的巨坑就是，我以为less文件可以引入js文件或者引入安装的插件，🤣🤣🤣🤣🤣）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;  // tinyColor.less 创建tinyColor.less文件
+
+  .tinyColorMixin() {
+    @function： ~`(tinyColor.js文件复制进来)` 
+  }
+
+  .tinyColorMixin() // 创建mixin，并执行
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;直接复制antd的&lt;a href=&quot;https://github.com/ant-design/ant-design/blob/master/components/style/color/tinyColor.less&quot;&gt;tinyColor.less文件&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;直接引入antd的tinyColor.less文件&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@import '~antd/lib/style/color/tinyColor.less';
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;编写自动调色函数&quot;&gt;编写自动调色函数&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;初步 &lt;a href=&quot;https://juejin.im/entry/5bfadeb3e51d456af437d4c2&quot;&gt;参考-张鑫旭css自动调色&lt;/a&gt;
+但是最后的颜色不对，背景颜色的深浅定义也不清楚。😭&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.palette-mixin() {
+  @functions: ~`(
+      function() {this.contrastColor = function(color) {var colorRgb = tinycolor(color) .toRgb() ;
+        var light = (colorRgb.r * 0.2126 + colorRgb.g * 0.7152 + colorRgb.b * 0.0722) / 255; var
+        limit = (light - 0.5) * -999999; return tinycolor.fromRatio({r: 0, g: 0, b: limit})
+        .toHslString()}}
+    )
+    () `;
+}
+
+.palette-mixin()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;二次, 基本上实现文字根据背景颜色显示白色或黑色&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.palette-mixin() {
+  @functions: ~`(
+      function() {this.contrastColor = function(color) {var colorRgb = tinycolor(color) .toRgb() ;
+        var colorJudge = colorRgb.r * 0.299 + colorRgb.g * 0.578 + colorRgb.b * 0.114;
+        if(colorJudge &amp;gt;= 192) {return tinycolor('#000')}else if(colorJudge &amp;lt; 192){return tinycolor(
+          '#fff'
+        )}}}
+    )
+    () `;
+}
+.palette-mixin();
+&lt;/code&gt;&lt;/pre&gt;</content><author><name>true</name></author><category term="less" /><summary type="html">原本的笔记有点多且繁琐~自己看的都有点晕，所以只选部分😅</summary></entry><entry><title type="html">使用nvm切换node版本</title><link href="http://localhost:4000/2020/01/10/nvm.html" rel="alternate" type="text/html" title="使用nvm切换node版本" /><published>2020-01-10T10:56:16+08:00</published><updated>2020-01-10T10:56:16+08:00</updated><id>http://localhost:4000/2020/01/10/nvm</id><content type="html" xml:base="http://localhost:4000/2020/01/10/nvm.html">&lt;p&gt;吼吼吼吼，😆😆😆😆😆今天学到了，自由切换node版本！&lt;/p&gt;
+
+&lt;p&gt;每个项目依赖的node版本都可能不一样，所以在管理不同的项目时，需要切换不同的node版本。&lt;/p&gt;
+
+&lt;p&gt;本文摘抄自&lt;a href=&quot;https://juejin.im/post/5dae55b75188257d8936be94&quot;&gt;使用NVM自由切换Node版本&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;下载安装nvm&quot;&gt;下载安装nvm&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://github.com/coreybutler/nvm-windows/releases&quot;&gt;下载地址 - 选 nvm-setup.zip 包 &lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载
+ &lt;img src=&quot;https://user-gold-cdn.xitu.io/2019/10/22/16df109d1d20ed64?imageView2/0/w/1280/h/960/format/webp/ignore-error/1&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;解压文件夹，点击安装，如果是window10，请使用管理员方式安装(忘记是不是一定要用管理员方式)。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看安装是否成功, 如果出现版本号则说明安装成功。(在bash中not found，在cmd中可以查看)&lt;/p&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt; nvm -v
+ Running version 1.1.7
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2019/10/22/16df111343be73bf?imageView2/0/w/1280/h/960/format/webp/ignore-error/1&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;使用nvm&quot;&gt;使用nvm&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看可以安装的node版本&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt;  nvm list available
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;查看安装的所有 node 版本
+    &lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt;  nvm list
+ 
+  10.14.2
+  * 8.0.0 (Currently using 64-bit executable) // 当前使用版本
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;安装node指定版本
+    &lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt;  nvm install xx.xx.xx(需要安装的版本号)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;切换node版本
+    &lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt; nvm use xx.xx.xx(已经安装的版本号)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;卸载指定版本
+    &lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt;  nvm uninstall xx.xx.xx
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>true</name></author><category term="nvm" /><summary type="html">吼吼吼吼，😆😆😆😆😆今天学到了，自由切换node版本！</summary></entry><entry><title type="html">搭建githubPage的一些记录</title><link href="http://localhost:4000/2020/01/02/%E6%90%AD%E5%BB%BAgithubPages.html" rel="alternate" type="text/html" title="搭建githubPage的一些记录" /><published>2020-01-02T19:56:16+08:00</published><updated>2020-01-02T19:56:16+08:00</updated><id>http://localhost:4000/2020/01/02/%E6%90%AD%E5%BB%BAgithubPages</id><content type="html" xml:base="http://localhost:4000/2020/01/02/%E6%90%AD%E5%BB%BAgithubPages.html">&lt;h3 id=&quot;一搭建github-pages&quot;&gt;一、搭建github pages&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/sqchen/p/10757927.html&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_19799765/article/details/80869363&quot;&gt;参考 - 个人网站的搭建 - 我的致命问题是这个解决的！&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;将项目设置为-github-pages&quot;&gt;将项目设置为 github pages&lt;/h4&gt;
+&lt;h5 id=&quot;1-选择需要设置为-github-pages的项目&quot;&gt;1. 选择需要设置为 github pages的项目，&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;注意：项目名称必须为 &lt;code class=&quot;highlighter-rouge&quot;&gt;你的github用户名.github.io&lt;/code&gt;！！！比如我的用户名是 Jade-Ting ，那这个仓库名就应该是 Jade-Ting.github.io ！！！否则网站会请求不到css跟js文件导致完全没有样式！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/01/08/PzSH2j6X4QNIbeo.png&quot; alt=&quot;设置githubpages_1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;2-进入settings后找到-github-pages将source选择为-master-branch就会出现page的地址点击进入就是该项目的地址啦&quot;&gt;2. 进入settings后找到 GitHub Pages将source选择为 master branch，就会出现page的地址。点击进入就是该项目的地址啦~&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/01/08/TMPwRJif5s2GDmX.png&quot; alt=&quot;设置githubpages_2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;在空项目中加入-jekyll-模板实现个人博客&quot;&gt;在空项目中加入 jekyll 模板，实现个人博客&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;又想偷懒又想美化项目！就只能找模板了！
+Github Pages基于Jekyll构建，Jekyll可以帮助我们把纯文本转换为静态博客网站&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;1-下载主题可以在-jekyll-themes-中选择自己喜欢的主题进入homegithub下载主题&quot;&gt;1. 下载主题：可以在 &lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll Themes&lt;/a&gt; 中选择自己喜欢的主题。进入home(github)下载主题。&lt;/h5&gt;
+&lt;h5 id=&quot;2-将下载的主题解压到项目文件夹中原项目主要保留-git-文件&quot;&gt;2. 将下载的主题解压到项目文件夹中。（原项目主要保留 .git 文件）&lt;/h5&gt;
+&lt;h5 id=&quot;3-熟悉-jekyll-的目录结构&quot;&gt;3. 熟悉 Jekyll 的目录结构&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
+├── _config.yml
+├── _drafts
+|   ├── begin-with-the-crazy-ideas.textile
+|   └── on-simplicity-in-technology.markdown
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   └── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   └── 2009-04-26-barcamp-boston-4-roundup.textile
+├── _site
+├── .jekyll-metadata
+└── index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h5 id=&quot;4-添加博客内容更新后push到github上即可&quot;&gt;4. 添加博客内容，更新后push到github上即可。&lt;/h5&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;进入 _posts目录，所有的文章都必须放在_posts文件夹下
+创建markdown文档，如根据时间和内容命名 yyyy-MM-dd-filename.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;5-修改主题&quot;&gt;5. 修改主题&lt;/h5&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 可以在 _config.yml 文件中将网站信息改成自己的
+2. 可以在 _includes 文件中修改html文件，修改网站样式
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;6-可以将个人博客的项目在github上设置为私有进入-setting设置danger-zone-点击-make-private&quot;&gt;6. 可以将个人博客的项目在github上设置为私有：进入 setting，设置Danger Zone， 点击 Make Private&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20190423172927155.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTA3MjUx,size_16,color_FFFFFF,t_70&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;7-注意要安装ruby环境运行-jekyll-主题才会出现具体安装操作见下文-安装ruby和jekyll&quot;&gt;7. 注意：要安装ruby环境，运行 jekyll 主题才会出现！具体安装操作见下文 【安装ruby和jekyll】&lt;/h5&gt;
+
+&lt;h3 id=&quot;二安装ruby和jekyll&quot;&gt;二、安装ruby和jekyll&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://mojotv.cn/2019/07/13/install-jekyll-in-windows10&quot;&gt;参考 - windows10安装jekyll和ruby环境&lt;/a&gt; - 下文多处摘自该文章。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;安装ruby&quot;&gt;安装Ruby&lt;/h4&gt;
+&lt;h5 id=&quot;1-下载ruby-到-rubyinstaller-中下载-rubydevkit-xxx版本-版本可自行选择注意区分-3264-位&quot;&gt;1. 下载ruby, 到 &lt;a href=&quot;https://rubyinstaller.org/downloads/&quot;&gt;RubyInstaller&lt;/a&gt; 中下载 Ruby+Devkit X.X.X版本 （版本可自行选择，注意区分 32/64 位）。&lt;/h5&gt;
+&lt;h5 id=&quot;2-安装ruby-点击下载好的-rubyinstaller-直接安装-注意勾选添加到path选项&quot;&gt;2. 安装ruby, 点击下载好的 rubyInstaller 直接安装。 注意：勾选添加到PATH选项&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://mojotv.cn/assets/image/ruby_01.png&quot; alt=&quot;安装界面&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;3-安装完成后会出现-rubyinstaller-界面选择-3-安装msys2-and-mingw-development-toolchain&quot;&gt;3. 安装完成后会出现 RubyInstaller 界面。选择 3 (安装MSYS2 and MINGW development toolchain)&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;https://mojotv.cn/assets/image/ruby_02.png&quot; alt=&quot;安装完成&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;下载gem-安装jekyll&quot;&gt;下载gem 安装jekyll&lt;/h4&gt;
+&lt;h5 id=&quot;1-下载-rubygems-到download-rubygems下载-zip-版&quot;&gt;1. 下载 RubyGems, 到&lt;a href=&quot;https://rubygems.org/pages/download&quot;&gt;Download RubyGems&lt;/a&gt;下载 zip 版。&lt;/h5&gt;
+&lt;h5 id=&quot;2-安装gem在解压文件夹中最外层安装-jekyll&quot;&gt;2. 安装gem，在解压文件夹中最外层安装 jekyll&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 在解压文件夹中最外层打开cmd
+
+gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll
+gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll-paginate
+jekyll &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;                   // 检查版本
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h5 id=&quot;3-安装bundle&quot;&gt;3. 安装bundle&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler
+
+// 如果安装完成后使用 bundle 报错，有可能是版本问题，根据提示重新安装制定版本
+
+gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler:1.16.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;在项目文件夹中执行&quot;&gt;在项目文件夹中执行&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;打开项目所在文件夹的cmd&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;1-安装依赖&quot;&gt;1. 安装依赖&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;2-启动jekyll服务&quot;&gt;2. 启动jekyll服务&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/01/08/iWebtXz92xMHwpI.png&quot; alt=&quot;jekyll启动成功.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;添加评论&quot;&gt;添加评论&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://blog.zxbing0066.com/jekyll/2014/11/12/disqus.html&quot;&gt;在jekyll中使用disqus&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;遇到的问题&quot;&gt;遇到的问题&lt;/h3&gt;
+&lt;h5 id=&quot;1-在执行-bundle-exec-jekyll-serve-时提示以下错误&quot;&gt;1. 在执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; 时，提示以下错误。&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 节选部分
+Could not find gem &lt;span class=&quot;s1&quot;&gt;'ruby (&amp;lt; 2.6)'&lt;/span&gt;, which is required by gem &lt;span class=&quot;s1&quot;&gt;'ffi (&amp;gt;= 0.5.0, &amp;lt; 2)'&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;any of the relevant sources: the &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;ruby installation
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;原因：bundle不兼容当前ruby版本。
+解决：所以重新安装小于2.6的版本。&lt;/p&gt;
+
+&lt;h5 id=&quot;2-在部署到github之后页面获取不到cssjs等文件导致页面没有样式等问题&quot;&gt;2. 在部署到github之后，页面获取不到css/js等文件，导致页面没有样式等问题。&lt;/h5&gt;
+
+&lt;p&gt;原因：在设置本项目的仓库名时要设置为 &lt;code class=&quot;highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt;，也就是 &lt;code class=&quot;highlighter-rouge&quot;&gt;你的github用户名.github.io&lt;/code&gt;！！！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/01/09/U4lhzXOmdeNRWuQ.png&quot; alt=&quot;报错1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/01/09/RkdLnsiKTQHr84p.png&quot; alt=&quot;报错.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;3-导航条上的-favicon-图片没有显示出来正确的应该如下所示&quot;&gt;3. 导航条上的 favicon 图片没有显示出来，正确的应该如下所示。&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/01/09/aIoF6V4hsnrNz2S.png&quot; alt=&quot;favicon.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;原因：本项目中该图标命名为 &lt;code class=&quot;highlighter-rouge&quot;&gt;profile.jpeg&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;解决：将图标改命名为 &lt;code class=&quot;highlighter-rouge&quot;&gt;favicon.png&lt;/code&gt;, 如果还是不显示则加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;type=&quot;image/png&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Favicon --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/assets/favicon.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/png&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/assets/favicon.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;apple-touch-icon-precomposed&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/png&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;补充：网络上的各种做法（还未一一验证）&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1.
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/favicon.png&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+// 2.
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/x-icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/favicon.ico?&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+// 3.
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/favicon.png&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+// 4. 使用的是.ico
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/x-icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/favicon.ico&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+// 5.
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/x-icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/favicon.ico&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+// 6.
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/favicon.png&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+// 7.
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://localhost:4000/favicon.png&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>true</name></author><category term="githubPage" /><summary type="html">一、搭建github pages 参考</summary></entry><entry><title type="html">欢迎来到阿糯的二三事</title><link href="http://localhost:4000/2020/01/01/welcome-to-mypage.html" rel="alternate" type="text/html" title="欢迎来到阿糯的二三事" /><published>2020-01-01T19:56:16+08:00</published><updated>2020-01-01T19:56:16+08:00</updated><id>http://localhost:4000/2020/01/01/welcome-to-mypage</id><content type="html" xml:base="http://localhost:4000/2020/01/01/welcome-to-mypage.html">&lt;p&gt;很久没有写文章了，有道云堆满了学习笔记，但也都是四处搜索堆叠的网站地址以及摘抄的各种技术文章。🙈&lt;/p&gt;
+
+&lt;p&gt;很久以前就打算开的博客，自身的惰性以及少的那份热忱便一直闲置了。今天倒腾了好久，安装Ruby环境，运行Jekyll，就为了使用这个主题。说来也惭愧，作为一个学技术的人，至少页面的样式是可以自己一点点敲出来的，却也没有那点点的动力。但是突然想到，githubPages好像也是基于 jekyll 语法的，哈哈哈哈。反正自己折腾的话重新学习的话，估计这个事又是要搁浅了。&lt;/p&gt;
+
+&lt;p&gt;关于搭建这个博客（虽然借助的是模板和github）~之后会把搭建中的学习笔记也上传哒~😁&lt;/p&gt;
+
+&lt;p&gt;这只是一篇测试文章，等我有时间了再好好写文吧~🏄‍♀️&lt;/p&gt;
+
+&lt;h4 id=&quot;补充免责一些白嫖说明&quot;&gt;补充免责~（一些白嫖说明🙈🙈🙈）&lt;/h4&gt;
+
+&lt;p&gt;由于本人还处于学习阶段~几乎都是参考其他人的文章做的笔记，但都是在参考的前提下经过实践的~&lt;/p&gt;
+
+&lt;p&gt;参考的链接在文中都有附上~大家可以跳转至原文看应该更好的说😝😝😝&lt;/p&gt;
+
+&lt;p&gt;每篇文章的背景色~来自&lt;a href=&quot;https://nipponcolors.com/#taikoh&quot;&gt;nipponcolors&lt;/a&gt;, 有点好看😘&lt;/p&gt;
+
+&lt;p&gt;可爱的表情来自~&lt;a href=&quot;http://emojihomepage.com/&quot;&gt;emojihomepage&lt;/a&gt;, 有点可爱😘&lt;/p&gt;
+
+&lt;p&gt;文章封面图片~部分来自本人觉得还ok的生活照，部分来自&lt;a href=&quot;https://www.pexels.com/zh-cn&quot;&gt;pexels&lt;/a&gt;, 有点好看😘&lt;/p&gt;</content><author><name>true</name></author><category term="welcome" /><summary type="html">很久没有写文章了，有道云堆满了学习笔记，但也都是四处搜索堆叠的网站地址以及摘抄的各种技术文章。🙈</summary></entry></feed>

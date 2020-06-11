@@ -1,0 +1,62 @@
+---
+layout: post
+title:  "在项目中使用CDN"
+date: 2020-01-13 10:56:16 +0800
+tags: cdn
+color: rgb(0,170,144)
+cover: '../assets/image/2020-01-13.jpg'
+subtitle: '在项目中引入cdn~😎'
+---
+
+- 引入某个依赖的cdn只是为了打包上线之后，可以直接通过 script 的方式去访问这些依赖，因此打包的时候可以不用打包这些依赖，就可以大大的减少包的体积。
+- 【注意】 在开发环境中还需要安装相关的依赖。
+
+1. 引入cdn：在入口文件使用 script 引入对应依赖对应版本的cdn
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>Ant Design Pro</title>
+    <link rel="icon" href="/favicon.png" type="image/x-icon" />
+
+    <!-- 引入对应包的cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.0/dist/g2.min.js"></script>
+
+  </head>
+  <body>
+    <noscript>Sorry, we need js to run correctly!</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+2. 配置 webpack, 使已经引入cdn的包不被打包
+
+```js
+export default {
+ ...,
+ 
+  output: {
+    libraryTarget: 'umd',
+  },
+  
+  <!--配置externals 将需要忽略打包的都写在这个里面，但前提是index.html文件里面必须script引入-->
+  externals: {
+  // 后面是原本使用的全局变量名，前面的是引入的包名（就是import xx from 'moment'），然后我们实际写代码时候，用的是xx这个变量名。
+    moment: 'moment',   
+    '@antv/g2': 'G2',
+  },
+  
+  // webpack就会在遇到引用moment或者@antv/g2的模块时，不将其打包入bundle.js中。所以moment或@antv/g2代表的是模块名，一定不能写错。模块名参照package.json中的包的名称
+  
+  ...
+};
+```

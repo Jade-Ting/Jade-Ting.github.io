@@ -1,0 +1,314 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="个人博客" />
+<meta name="keywords" content="前端学习, 闲言碎语" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_default.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/favicon.png" rel="shortcut icon" type="image/png"/>
+<link href="/assets/favicon.png" rel="apple-touch-icon-precomposed"  type="image/png"/>
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>使用nvm切换node版本</title>
+<!-- 百度统计 -->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- 谷歌分析 -->
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(248,195,205) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(248,195,205);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">anuo Two or Three</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">阿糯</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">二三事</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">那些年</a></li>
+              
+                <li><a href="/about.html" style="color: white;">闲言碎语</a></li>
+              
+                <li><a href="/friendLink.html" style="color: white;">小宝藏</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>阿糯</li></a>
+        
+          <a href="/tags.html"><li>二三事</li></a>
+        
+          <a href="/timeline.html"><li>那些年</li></a>
+        
+          <a href="/about.html"><li>闲言碎语</li></a>
+        
+          <a href="/friendLink.html"><li>小宝藏</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">使用nvm切换node版本</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(248,195,205);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="/2020/01/12/less.html" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(248,195,205)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(248,195,205);"><sapn class="main">学习less的笔记</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">使用nvm切换node版本</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2020/01/02/%E6%90%AD%E5%BB%BAgithubPages.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(248,195,205)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(248,195,205);"><sapn class="main">搭建githubPage的一些记录</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="/2020/01/12/less.html" class="leftchange" style="border-right: 1px solid rgb(248,195,205);border-bottom: 2px solid rgb(248,195,205);"><span>上一篇<br><br>学习less的笔记</span></a>
+    
+    
+      <a href="/2020/01/02/%E6%90%AD%E5%BB%BAgithubPages.html" class="rightchange" style="border-left: 1px solid rgb(248,195,205);border-bottom: 2px solid rgb(248,195,205);"><span>下一篇<br><br>搭建githubPage的一些记录</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+    
+      <div class="postpage-subtitle" style="border-left: 8px solid rgb(248,195,205); border-right: 8px solid rgb(248,195,205)">
+        原来可以这样切换node版本🙊
+      </div>
+    
+  
+
+  <!-- 文章内容 -->
+  <p>吼吼吼吼，😆😆😆😆😆今天学到了，自由切换node版本！</p>
+
+<p>每个项目依赖的node版本都可能不一样，所以在管理不同的项目时，需要切换不同的node版本。</p>
+
+<p>本文摘抄自<a href="https://juejin.im/post/5dae55b75188257d8936be94">使用NVM自由切换Node版本</a></p>
+
+<h4 id="下载安装nvm">下载安装nvm</h4>
+<blockquote>
+  <p><a href="https://github.com/coreybutler/nvm-windows/releases">下载地址 - 选 nvm-setup.zip 包 </a></p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>下载
+ <img src="https://user-gold-cdn.xitu.io/2019/10/22/16df109d1d20ed64?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image" /></p>
+  </li>
+  <li>
+    <p>解压文件夹，点击安装，如果是window10，请使用管理员方式安装(忘记是不是一定要用管理员方式)。</p>
+  </li>
+  <li>
+    <p>查看安装是否成功, 如果出现版本号则说明安装成功。(在bash中not found，在cmd中可以查看)</p>
+    <pre><code class="language-cmd"> nvm -v
+ Running version 1.1.7
+</code></pre>
+    <p><img src="https://user-gold-cdn.xitu.io/2019/10/22/16df111343be73bf?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image" /></p>
+  </li>
+</ol>
+
+<h4 id="使用nvm">使用nvm</h4>
+
+<ul>
+  <li>
+    <p>查看可以安装的node版本</p>
+
+    <pre><code class="language-cmd">  nvm list available
+</code></pre>
+  </li>
+  <li>查看安装的所有 node 版本
+    <pre><code class="language-cmd">  nvm list
+ 
+  10.14.2
+  * 8.0.0 (Currently using 64-bit executable) // 当前使用版本
+</code></pre>
+  </li>
+  <li>安装node指定版本
+    <pre><code class="language-cmd">  nvm install xx.xx.xx(需要安装的版本号)
+</code></pre>
+  </li>
+  <li>切换node版本
+    <pre><code class="language-cmd"> nvm use xx.xx.xx(已经安装的版本号)
+</code></pre>
+  </li>
+  <li>卸载指定版本
+    <pre><code class="language-cmd">  nvm uninstall xx.xx.xx
+</code></pre>
+  </li>
+</ul>
+
+  <!-- 引入share模块 -->
+  
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+<section class="post-footer-item comment">
+    <div id="disqus_thread"></div>
+</section>
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+    (function() {
+        // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement("script");
+        s.src = "https://anuo.disqus.com/embed.js";
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript
+    >Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript"
+        >comments powered by Disqus.</a
+    ></noscript
+>
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="顶部切换页面" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Top
+    </div>
+  </a>
+  <a title="底部有disqus评论哦" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>阿糯的二三事 ©
+  
+  
+  2020
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

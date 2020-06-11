@@ -1,0 +1,591 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="个人博客" />
+<meta name="keywords" content="前端学习, 闲言碎语" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_default.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/favicon.png" rel="shortcut icon" type="image/png"/>
+<link href="/assets/favicon.png" rel="apple-touch-icon-precomposed"  type="image/png"/>
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>学习less的笔记</title>
+<!-- 百度统计 -->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- 谷歌分析 -->
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(125,185,222) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(125,185,222);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">anuo Two or Three</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">阿糯</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">二三事</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">那些年</a></li>
+              
+                <li><a href="/about.html" style="color: white;">闲言碎语</a></li>
+              
+                <li><a href="/friendLink.html" style="color: white;">小宝藏</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>阿糯</li></a>
+        
+          <a href="/tags.html"><li>二三事</li></a>
+        
+          <a href="/timeline.html"><li>那些年</li></a>
+        
+          <a href="/about.html"><li>闲言碎语</li></a>
+        
+          <a href="/friendLink.html"><li>小宝藏</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">学习less的笔记</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(125,185,222);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="/2020/01/13/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8CDN.html" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(125,185,222)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(125,185,222);"><sapn class="main">在项目中使用CDN</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">学习less的笔记</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2020/01/10/nvm.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(125,185,222)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(125,185,222);"><sapn class="main">使用nvm切换node版本</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="/2020/01/13/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8CDN.html" class="leftchange" style="border-right: 1px solid rgb(125,185,222);border-bottom: 2px solid rgb(125,185,222);"><span>上一篇<br><br>在项目中使用CDN</span></a>
+    
+    
+      <a href="/2020/01/10/nvm.html" class="rightchange" style="border-left: 1px solid rgb(125,185,222);border-bottom: 2px solid rgb(125,185,222);"><span>下一篇<br><br>使用nvm切换node版本</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+    
+      <div class="postpage-subtitle" style="border-left: 8px solid rgb(125,185,222); border-right: 8px solid rgb(125,185,222)">
+        很久之前学习less的笔记~😋
+      </div>
+    
+  
+
+  <!-- 文章内容 -->
+  <blockquote>
+  <p>原本的笔记有点多且繁琐~自己看的都有点晕，所以只选部分😅</p>
+</blockquote>
+
+<blockquote>
+  <p><a href="https://less.bootcss.com/functions/">Less函数手册</a>
+|<a href="http://www.maiziedu.com/wiki/css/colour/">参考</a>
+|<a href="https://juejin.im/post/5a2bc28f6fb9a044fe464b19">参考 SimonMa</a>
+|<a href="https://www.html.cn/doc/less/features/#variables-feature">中文文档</a></p>
+</blockquote>
+
+<h2 id="循环-loops">循环 Loops</h2>
+
+<p>在less中，mixin可以调用自身， 当一个mixin递归调用自己，就能形成循环结构</p>
+
+<ul>
+  <li>
+    <p>实例</p>
+
+    <pre><code class="language-less">// .less文件
+.loop(@count, @percent) when (@count &gt; 0) {
+  .colorPurple@{count} {                 // 生成 count 个类名
+    color: lighten(#a374d5, @percent); // 每次调用时产生的样式代码
+  }
+  .loop((@count - 1), (@percent + 10%)); // 递归调用自身
+}
+
+.test {
+  .loop(10, 10%);
+}
+
+// demo.js中调用
+&lt;div className={style.test}&gt;
+    &lt;div className={style.colorPurple5}&gt;测试&lt;/div&gt; // 此时colorPurple可以调用的挡位有colorPurple1-colorPurple10
+&lt;/div&gt;
+
+&lt;!--得到‘测试’两个字的颜色为 60%的 #a374d5--&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>使用递归循环生成栅格系统</p>
+
+    <pre><code class="language-less">
+.generate-columns(@n, @i: 1) when (@i =&lt; @n) {
+    .column-@{i} {
+        width: (@i * 100% / @n);
+    }
+    .generate-columns(@n, (@i + 1));
+}
+
+// 调用
+.generate-columns(4);
+
+// 输出css
+.column-1 {
+  width: 25%;
+}
+.column-2 {
+  width: 50%;
+}
+.column-3 {
+  width: 75%;
+}
+.column-4 {
+  width: 100%;
+}
+&lt;!--即：再使用的时候，只要调用className=column-n就可以了--&gt;
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="遍历">遍历</h2>
+
+<p>在less中遍历数组</p>
+
+<pre><code class="language-less">  @colors: red, green, blue, black; // 定义数组元素
+
+  .for(@data, @i: 1) when(@i =&lt; length(@data)) { // length(@data) 获取数组长度
+      @item: extract(@data, @i); // 数组元素取值
+      div {
+          background: @item;
+      }
+      .for(@data, (@i + 1));
+  }
+
+  .for(@colors);
+
+
+  // 输出css
+  div {
+    background: red;
+  }
+  div {
+    background: green;
+  }
+  div {
+    background: blue;
+  }
+  div {
+    background: black;
+  }
+</code></pre>
+
+<h2 id="合并">合并</h2>
+
+<p>可以将同一个属性的值合并，比如 <code class="highlighter-rouge">background</code> 和 <code class="highlighter-rouge">transform</code> 之类的属性</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">+</code> 代表属性合并的值用逗号隔开</p>
+
+    <pre><code class="language-less">.mixin() {
+  box-shadow+: inset 0 0 10px #555;
+}
+.myclass {
+  .mixin();
+  box-shadow+: 0 0 20px black;
+}
+
+// 输出css
+.myclass {
+  box-shadow: inset 0 0 10px #555, 0 0 20px black;
+}
+</code></pre>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">+_</code> 表示属性合并的值用空格隔开</p>
+
+    <pre><code class="language-less">.mixin() {
+  transform+_: scale(2);
+}
+.myclass {
+  .mixin();
+  transform+_: rotate(15deg);
+}
+
+// 输出css
+.myclass {
+  transform: scale(2) rotate(15deg);
+}
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="拼接字符串">拼接字符串</h2>
+
+<ul>
+  <li>
+    <p>用 ` ‘’ ` 拼接</p>
+
+    <pre><code class="language-less">@primary-color: #a374d5;
+@color-item: primary;
+
+@color-name: '@{color-item}-color'; // 变量拼接字符串得到 primary-color
+
+color: @@color-name; // color: #a374d5;
+</code></pre>
+  </li>
+  <li>
+    <p>用 <code class="highlighter-rouge">~''</code>拼接，参考 <a href="https://segmentfault.com/a/1190000007472208">less变量插值问题</a></p>
+
+    <pre><code class="language-less">// loop start
+.taskSlideBg(@num) when (@num &lt;6){
+  @num2:~"@{num}n";
+  @color:"mkcolor@{num}";
+  #mkUser-task-con .mkUser-task-box:nth-child(@{num2}) .mkUser-task-title{background:@@color;}
+  .taskSlideBg((@num+1))
+}
+.taskSlideBg(1);
+// loop end
+
+
+&lt;!--编译--&gt;
+#mkUser-task-con .mkUser-task-box:nth-child(1n) .mkUser-task-title {
+  background: #6ec5ff;
+}
+#mkUser-task-con .mkUser-task-box:nth-child(2n) .mkUser-task-title {
+  background: #ff8365;
+}
+...
+
+</code></pre>
+  </li>
+  <li>
+    <p>使用在属性 calc 中</p>
+
+    <pre><code class="language-less">// 使用变量
+.class {
+  @cap: 50px;
+  height: calc(~"100% - @{cap}");
+}
+
+// 得到
+.class {
+  height: calc(~"100% - 50px");
+}
+</code></pre>
+
+    <blockquote>
+      <p><code class="highlighter-rouge">~</code> 通常用在拼接变量，使用js方法时在前面添加该符号，如 ~’’ , 和 ~`` ，表示编译完成后去掉后面的引号或者反引号。</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="在less中写js">在less中写js</h2>
+
+<ul>
+  <li>首先配置webpack使less支持编写js, 在options中添加 <code class="highlighter-rouge">javascriptEnabled: true</code></li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">less/</span><span class="p">,</span>
+  <span class="nx">exclude</span><span class="p">:</span> <span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="p">,</span>
+  <span class="nx">use</span><span class="p">:</span> <span class="p">[</span><span class="s1">'style-loader'</span><span class="p">,</span> <span class="s1">'css-loader'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">loader</span><span class="p">:</span> <span class="s1">'less-loader'</span><span class="p">,</span>
+    <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">javascriptEnabled</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">// 支持js</span>
+    <span class="p">}</span>
+  <span class="p">}],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>实例
+    <blockquote>
+      <p><a href="https://www.itread01.com/content/1515159652.html">参考 @function趣谈</a> 
+| <a href="https://www.cnblogs.com/mabylove/p/8206264.html">几乎相同的另一篇文章</a></p>
+    </blockquote>
+
+    <pre><code class="language-less">.paletteMixin() {
+  @functions: ~`(function() {
+    // 方法1
+    this.palette = function(color) { // function()里面传入color
+    return color; // 返回color，则function()里面传入的也是color
+    }
+      
+    // 方法2
+    this.test = function(border-radius) {
+        return border-raduis;
+    }
+      
+  })()`;
+}
+
+// 运行mixin
+.paletteMixin()
+</code></pre>
+
+    <p>使用</p>
+
+    <pre><code class="language-less">@primary-color: #123456
+
+.test {
+  color: color(~`palette("@{primary-color}")`);
+  border-radius: ~`test('10px')`
+}
+
+// 得到css
+.test {
+    color: #123456;
+    border-radius: 10px;
+}
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="编写简单的反色方法">编写简单的反色方法🍦🍕🌭🌮🌯🥙🍹</h2>
+<blockquote>
+  <p><a href="https://github.com/bgrins/TinyColor">颜色工具-TinyColor</a>
+| <a href="https://github.com/gre/bezier-easing">antd中还用了贝塞尔曲线的插件-bezier-easing</a>，我们不用呢！<strong>🤔</strong></p>
+</blockquote>
+
+<h3 id="引入tinycolor">引入tinyColor：</h3>
+
+<ol>
+  <li>将<a href="https://github.com/bgrins/TinyColor/blob/master/tinycolor.js">tinyColor.js</a>写入mixins中，从而将<code class="highlighter-rouge">tinyColor.js</code>转化为<code class="highlighter-rouge">tinyColor.less</code>,最后在其他less文件中引入 <code class="highlighter-rouge">tinyColor.less</code>。（这里的巨坑就是，我以为less文件可以引入js文件或者引入安装的插件，🤣🤣🤣🤣🤣）</li>
+</ol>
+
+<pre><code class="language-less">  // tinyColor.less 创建tinyColor.less文件
+
+  .tinyColorMixin() {
+    @function： ~`(tinyColor.js文件复制进来)` 
+  }
+
+  .tinyColorMixin() // 创建mixin，并执行
+</code></pre>
+
+<ol>
+  <li>
+    <p>直接复制antd的<a href="https://github.com/ant-design/ant-design/blob/master/components/style/color/tinyColor.less">tinyColor.less文件</a></p>
+  </li>
+  <li>
+    <p>直接引入antd的tinyColor.less文件</p>
+  </li>
+</ol>
+
+<pre><code class="language-less">@import '~antd/lib/style/color/tinyColor.less';
+</code></pre>
+
+<h3 id="编写自动调色函数">编写自动调色函数</h3>
+<ul>
+  <li>初步 <a href="https://juejin.im/entry/5bfadeb3e51d456af437d4c2">参考-张鑫旭css自动调色</a>
+但是最后的颜色不对，背景颜色的深浅定义也不清楚。😭</li>
+</ul>
+
+<pre><code class="language-less">.palette-mixin() {
+  @functions: ~`(
+      function() {this.contrastColor = function(color) {var colorRgb = tinycolor(color) .toRgb() ;
+        var light = (colorRgb.r * 0.2126 + colorRgb.g * 0.7152 + colorRgb.b * 0.0722) / 255; var
+        limit = (light - 0.5) * -999999; return tinycolor.fromRatio({r: 0, g: 0, b: limit})
+        .toHslString()}}
+    )
+    () `;
+}
+
+.palette-mixin()
+</code></pre>
+
+<ul>
+  <li>二次, 基本上实现文字根据背景颜色显示白色或黑色</li>
+</ul>
+
+<pre><code class="language-less">.palette-mixin() {
+  @functions: ~`(
+      function() {this.contrastColor = function(color) {var colorRgb = tinycolor(color) .toRgb() ;
+        var colorJudge = colorRgb.r * 0.299 + colorRgb.g * 0.578 + colorRgb.b * 0.114;
+        if(colorJudge &gt;= 192) {return tinycolor('#000')}else if(colorJudge &lt; 192){return tinycolor(
+          '#fff'
+        )}}}
+    )
+    () `;
+}
+.palette-mixin();
+</code></pre>
+
+  <!-- 引入share模块 -->
+  
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+<section class="post-footer-item comment">
+    <div id="disqus_thread"></div>
+</section>
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+    (function() {
+        // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement("script");
+        s.src = "https://anuo.disqus.com/embed.js";
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript
+    >Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript"
+        >comments powered by Disqus.</a
+    ></noscript
+>
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="顶部切换页面" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Top
+    </div>
+  </a>
+  <a title="底部有disqus评论哦" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>阿糯的二三事 ©
+  
+  
+  2020
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

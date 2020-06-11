@@ -1,0 +1,320 @@
+---
+layout: post
+title:  "学习less的笔记"
+date: 2020-01-12 10:56:16 +0800
+tags: less
+color: rgb(125,185,222)
+cover: '../assets/image/2020-01-12.jpg'
+subtitle: '很久之前学习less的笔记~😋'
+---
+
+> 原本的笔记有点多且繁琐~自己看的都有点晕，所以只选部分😅
+
+> [Less函数手册](https://less.bootcss.com/functions/)
+> |[参考](http://www.maiziedu.com/wiki/css/colour/)
+> |[参考 SimonMa](https://juejin.im/post/5a2bc28f6fb9a044fe464b19)
+> |[中文文档](https://www.html.cn/doc/less/features/#variables-feature)
+
+## 循环 Loops
+
+在less中，mixin可以调用自身， 当一个mixin递归调用自己，就能形成循环结构
+
+- 实例
+
+  ```less
+  // .less文件
+  .loop(@count, @percent) when (@count > 0) {
+    .colorPurple@{count} {                 // 生成 count 个类名
+      color: lighten(#a374d5, @percent); // 每次调用时产生的样式代码
+    }
+    .loop((@count - 1), (@percent + 10%)); // 递归调用自身
+  }
+
+  .test {
+    .loop(10, 10%);
+  }
+
+  // demo.js中调用
+  <div className={style.test}>
+      <div className={style.colorPurple5}>测试</div> // 此时colorPurple可以调用的挡位有colorPurple1-colorPurple10
+  </div>
+
+  <!--得到‘测试’两个字的颜色为 60%的 #a374d5-->
+  ```
+
+- 使用递归循环生成栅格系统
+
+  ```less
+
+  .generate-columns(@n, @i: 1) when (@i =< @n) {
+      .column-@{i} {
+          width: (@i * 100% / @n);
+      }
+      .generate-columns(@n, (@i + 1));
+  }
+
+  // 调用
+  .generate-columns(4);
+
+  // 输出css
+  .column-1 {
+    width: 25%;
+  }
+  .column-2 {
+    width: 50%;
+  }
+  .column-3 {
+    width: 75%;
+  }
+  .column-4 {
+    width: 100%;
+  }
+  <!--即：再使用的时候，只要调用className=column-n就可以了-->
+  ```
+
+
+## 遍历
+
+在less中遍历数组
+
+  ```less
+  @colors: red, green, blue, black; // 定义数组元素
+
+  .for(@data, @i: 1) when(@i =< length(@data)) { // length(@data) 获取数组长度
+      @item: extract(@data, @i); // 数组元素取值
+      div {
+          background: @item;
+      }
+      .for(@data, (@i + 1));
+  }
+
+  .for(@colors);
+
+
+  // 输出css
+  div {
+    background: red;
+  }
+  div {
+    background: green;
+  }
+  div {
+    background: blue;
+  }
+  div {
+    background: black;
+  }
+  ```
+
+## 合并
+
+可以将同一个属性的值合并，比如 `background` 和 `transform` 之类的属性
+
+- `+` 代表属性合并的值用逗号隔开
+
+  ```less
+  .mixin() {
+    box-shadow+: inset 0 0 10px #555;
+  }
+  .myclass {
+    .mixin();
+    box-shadow+: 0 0 20px black;
+  }
+
+  // 输出css
+  .myclass {
+    box-shadow: inset 0 0 10px #555, 0 0 20px black;
+  }
+  ```
+
+- `+_` 表示属性合并的值用空格隔开
+
+  ```less
+  .mixin() {
+    transform+_: scale(2);
+  }
+  .myclass {
+    .mixin();
+    transform+_: rotate(15deg);
+  }
+
+  // 输出css
+  .myclass {
+    transform: scale(2) rotate(15deg);
+  }
+  ```
+
+## 拼接字符串
+
+- 用 ` '' ` 拼接
+
+  ```less
+  @primary-color: #a374d5;
+  @color-item: primary;
+
+  @color-name: '@{color-item}-color'; // 变量拼接字符串得到 primary-color
+
+  color: @@color-name; // color: #a374d5;
+  ```
+
+- 用 `~''`拼接，参考 [less变量插值问题](https://segmentfault.com/a/1190000007472208)
+
+  ```less
+  // loop start
+  .taskSlideBg(@num) when (@num <6){
+    @num2:~"@{num}n";
+    @color:"mkcolor@{num}";
+    #mkUser-task-con .mkUser-task-box:nth-child(@{num2}) .mkUser-task-title{background:@@color;}
+    .taskSlideBg((@num+1))
+  }
+  .taskSlideBg(1);
+  // loop end
+
+
+  <!--编译-->
+  #mkUser-task-con .mkUser-task-box:nth-child(1n) .mkUser-task-title {
+    background: #6ec5ff;
+  }
+  #mkUser-task-con .mkUser-task-box:nth-child(2n) .mkUser-task-title {
+    background: #ff8365;
+  }
+  ...
+
+  ```
+
+- 使用在属性 calc 中
+
+  ```less
+  // 使用变量
+  .class {
+    @cap: 50px;
+    height: calc(~"100% - @{cap}");
+  }
+
+  // 得到
+  .class {
+    height: calc(~"100% - 50px");
+  }
+  ```
+
+  > `~` 通常用在拼接变量，使用js方法时在前面添加该符号，如 ~'' , 和 ~`` ，表示编译完成后去掉后面的引号或者反引号。
+
+
+## 在less中写js
+
+- 首先配置webpack使less支持编写js, 在options中添加 `javascriptEnabled: true`
+
+```js
+{
+  test: /\.less/,
+  exclude: /node_modules/,
+  use: ['style-loader', 'css-loader', {
+    loader: 'less-loader',
+    options: {
+      javascriptEnabled: true // 支持js
+    }
+  }],
+}
+```
+
+- 实例
+  > [参考 @function趣谈](https://www.itread01.com/content/1515159652.html) 
+| [几乎相同的另一篇文章](https://www.cnblogs.com/mabylove/p/8206264.html)
+
+  ```less
+  .paletteMixin() {
+    @functions: ~`(function() {
+      // 方法1
+      this.palette = function(color) { // function()里面传入color
+      return color; // 返回color，则function()里面传入的也是color
+      }
+      
+      // 方法2
+      this.test = function(border-radius) {
+          return border-raduis;
+      }
+      
+    })()`;
+  }
+
+  // 运行mixin
+  .paletteMixin()
+  ```
+
+  使用
+
+  ```less
+  @primary-color: #123456
+
+  .test {
+    color: color(~`palette("@{primary-color}")`);
+    border-radius: ~`test('10px')`
+  }
+
+  // 得到css
+  .test {
+      color: #123456;
+      border-radius: 10px;
+  }
+  ```
+
+## 编写简单的反色方法🍦🍕🌭🌮🌯🥙🍹
+> [颜色工具-TinyColor](https://github.com/bgrins/TinyColor)
+| [antd中还用了贝塞尔曲线的插件-bezier-easing](https://github.com/gre/bezier-easing)，我们不用呢！**🤔** 
+
+### 引入tinyColor：
+
+1. 将[tinyColor.js](https://github.com/bgrins/TinyColor/blob/master/tinycolor.js)写入mixins中，从而将`tinyColor.js`转化为`tinyColor.less`,最后在其他less文件中引入 `tinyColor.less`。（这里的巨坑就是，我以为less文件可以引入js文件或者引入安装的插件，🤣🤣🤣🤣🤣）
+
+  ```less
+  // tinyColor.less 创建tinyColor.less文件
+
+  .tinyColorMixin() {
+    @function： ~`(tinyColor.js文件复制进来)` 
+  }
+
+  .tinyColorMixin() // 创建mixin，并执行
+  ```
+
+2. 直接复制antd的[tinyColor.less文件](https://github.com/ant-design/ant-design/blob/master/components/style/color/tinyColor.less)
+
+3. 直接引入antd的tinyColor.less文件
+
+```less
+@import '~antd/lib/style/color/tinyColor.less';
+```
+
+
+### 编写自动调色函数
+- 初步 [参考-张鑫旭css自动调色](https://juejin.im/entry/5bfadeb3e51d456af437d4c2)
+但是最后的颜色不对，背景颜色的深浅定义也不清楚。😭
+
+```less
+.palette-mixin() {
+  @functions: ~`(
+      function() {this.contrastColor = function(color) {var colorRgb = tinycolor(color) .toRgb() ;
+        var light = (colorRgb.r * 0.2126 + colorRgb.g * 0.7152 + colorRgb.b * 0.0722) / 255; var
+        limit = (light - 0.5) * -999999; return tinycolor.fromRatio({r: 0, g: 0, b: limit})
+        .toHslString()}}
+    )
+    () `;
+}
+
+.palette-mixin()
+```
+
+- 二次, 基本上实现文字根据背景颜色显示白色或黑色
+
+```less
+.palette-mixin() {
+  @functions: ~`(
+      function() {this.contrastColor = function(color) {var colorRgb = tinycolor(color) .toRgb() ;
+        var colorJudge = colorRgb.r * 0.299 + colorRgb.g * 0.578 + colorRgb.b * 0.114;
+        if(colorJudge >= 192) {return tinycolor('#000')}else if(colorJudge < 192){return tinycolor(
+          '#fff'
+        )}}}
+    )
+    () `;
+}
+.palette-mixin();
+```

@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "使用nvm切换node版本"
+date: 2020-01-10 10:56:16 +0800
+tags: nvm
+color: rgb(248,195,205)
+cover: '../assets/image/2020-01-10.jpg'
+subtitle: '原来可以这样切换node版本🙊'
+---
+
+吼吼吼吼，😆😆😆😆😆今天学到了，自由切换node版本！
+
+每个项目依赖的node版本都可能不一样，所以在管理不同的项目时，需要切换不同的node版本。
+
+本文摘抄自[使用NVM自由切换Node版本](https://juejin.im/post/5dae55b75188257d8936be94)
+
+#### 下载安装nvm
+> [下载地址 - 选 nvm-setup.zip 包 ](https://github.com/coreybutler/nvm-windows/releases)
+
+1. 下载
+    ![image](https://user-gold-cdn.xitu.io/2019/10/22/16df109d1d20ed64?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+
+2. 解压文件夹，点击安装，如果是window10，请使用管理员方式安装(忘记是不是一定要用管理员方式)。
+
+3. 查看安装是否成功, 如果出现版本号则说明安装成功。(在bash中not found，在cmd中可以查看)
+    ```cmd
+    nvm -v
+    Running version 1.1.7
+    ```
+    ![image](https://user-gold-cdn.xitu.io/2019/10/22/16df111343be73bf?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+#### 使用nvm
+
+- 查看可以安装的node版本
+
+    ```cmd
+    nvm list available
+    ```
+
+- 查看安装的所有 node 版本
+    ```cmd
+    nvm list
+ 
+    10.14.2
+    * 8.0.0 (Currently using 64-bit executable) // 当前使用版本
+    ```
+- 安装node指定版本
+    ```cmd
+    nvm install xx.xx.xx(需要安装的版本号)
+    ```
+ 
+- 切换node版本
+    ```cmd
+   nvm use xx.xx.xx(已经安装的版本号)
+   ```
+
+- 卸载指定版本
+    ```cmd
+    nvm uninstall xx.xx.xx
+    ```

@@ -1,0 +1,421 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="个人博客" />
+<meta name="keywords" content="前端学习, 闲言碎语" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_default.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/favicon.png" rel="shortcut icon" type="image/png"/>
+<link href="/assets/favicon.png" rel="apple-touch-icon-precomposed"  type="image/png"/>
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>搭建githubPage的一些记录</title>
+<!-- 百度统计 -->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- 谷歌分析 -->
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(241,148,131) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(241,148,131);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">anuo Two or Three</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">阿糯</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">二三事</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">那些年</a></li>
+              
+                <li><a href="/about.html" style="color: white;">闲言碎语</a></li>
+              
+                <li><a href="/friendLink.html" style="color: white;">小宝藏</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>阿糯</li></a>
+        
+          <a href="/tags.html"><li>二三事</li></a>
+        
+          <a href="/timeline.html"><li>那些年</li></a>
+        
+          <a href="/about.html"><li>闲言碎语</li></a>
+        
+          <a href="/friendLink.html"><li>小宝藏</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">搭建githubPage的一些记录</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(241,148,131);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="/2020/01/10/nvm.html" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(241,148,131)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(241,148,131);"><sapn class="main">使用nvm切换node版本</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">搭建githubPage的一些记录</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2020/01/01/welcome-to-mypage.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(241,148,131)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(241,148,131);"><sapn class="main">欢迎来到阿糯的二三事</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="/2020/01/10/nvm.html" class="leftchange" style="border-right: 1px solid rgb(241,148,131);border-bottom: 2px solid rgb(241,148,131);"><span>上一篇<br><br>使用nvm切换node版本</span></a>
+    
+    
+      <a href="/2020/01/01/welcome-to-mypage.html" class="rightchange" style="border-left: 1px solid rgb(241,148,131);border-bottom: 2px solid rgb(241,148,131);"><span>下一篇<br><br>欢迎来到阿糯的二三事</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+    
+      <div class="postpage-subtitle" style="border-left: 8px solid rgb(241,148,131); border-right: 8px solid rgb(241,148,131)">
+        从零开始搭建（搬运）githubPage
+      </div>
+    
+  
+
+  <!-- 文章内容 -->
+  <h3 id="一搭建github-pages">一、搭建github pages</h3>
+<blockquote>
+  <p><a href="https://www.cnblogs.com/sqchen/p/10757927.html">参考</a></p>
+</blockquote>
+
+<blockquote>
+  <p><a href="https://blog.csdn.net/qq_19799765/article/details/80869363">参考 - 个人网站的搭建 - 我的致命问题是这个解决的！</a></p>
+</blockquote>
+
+<h4 id="将项目设置为-github-pages">将项目设置为 github pages</h4>
+<h5 id="1-选择需要设置为-github-pages的项目">1. 选择需要设置为 github pages的项目，</h5>
+
+<p><strong>注意：项目名称必须为 <code class="highlighter-rouge">你的github用户名.github.io</code>！！！比如我的用户名是 Jade-Ting ，那这个仓库名就应该是 Jade-Ting.github.io ！！！否则网站会请求不到css跟js文件导致完全没有样式！</strong></p>
+
+<p><img src="https://i.loli.net/2020/01/08/PzSH2j6X4QNIbeo.png" alt="设置githubpages_1.png" /></p>
+
+<h5 id="2-进入settings后找到-github-pages将source选择为-master-branch就会出现page的地址点击进入就是该项目的地址啦">2. 进入settings后找到 GitHub Pages将source选择为 master branch，就会出现page的地址。点击进入就是该项目的地址啦~</h5>
+
+<p><img src="https://i.loli.net/2020/01/08/TMPwRJif5s2GDmX.png" alt="设置githubpages_2.png" /></p>
+
+<h4 id="在空项目中加入-jekyll-模板实现个人博客">在空项目中加入 jekyll 模板，实现个人博客</h4>
+<blockquote>
+  <p>又想偷懒又想美化项目！就只能找模板了！
+Github Pages基于Jekyll构建，Jekyll可以帮助我们把纯文本转换为静态博客网站</p>
+</blockquote>
+
+<h5 id="1-下载主题可以在-jekyll-themes-中选择自己喜欢的主题进入homegithub下载主题">1. 下载主题：可以在 <a href="http://jekyllthemes.org/">Jekyll Themes</a> 中选择自己喜欢的主题。进入home(github)下载主题。</h5>
+<h5 id="2-将下载的主题解压到项目文件夹中原项目主要保留-git-文件">2. 将下载的主题解压到项目文件夹中。（原项目主要保留 .git 文件）</h5>
+<h5 id="3-熟悉-jekyll-的目录结构">3. 熟悉 Jekyll 的目录结构</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── _config.yml
+├── _drafts
+|   ├── begin-with-the-crazy-ideas.textile
+|   └── on-simplicity-in-technology.markdown
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   └── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   └── 2009-04-26-barcamp-boston-4-roundup.textile
+├── _site
+├── .jekyll-metadata
+└── index.html
+</code></pre></div></div>
+<h5 id="4-添加博客内容更新后push到github上即可">4. 添加博客内容，更新后push到github上即可。</h5>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>进入 _posts目录，所有的文章都必须放在_posts文件夹下
+创建markdown文档，如根据时间和内容命名 yyyy-MM-dd-filename.md
+</code></pre></div></div>
+
+<h5 id="5-修改主题">5. 修改主题</h5>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 可以在 _config.yml 文件中将网站信息改成自己的
+2. 可以在 _includes 文件中修改html文件，修改网站样式
+</code></pre></div></div>
+
+<h5 id="6-可以将个人博客的项目在github上设置为私有进入-setting设置danger-zone-点击-make-private">6. 可以将个人博客的项目在github上设置为私有：进入 setting，设置Danger Zone， 点击 Make Private</h5>
+<p><img src="https://img-blog.csdnimg.cn/20190423172927155.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTA3MjUx,size_16,color_FFFFFF,t_70" alt="image" /></p>
+
+<h5 id="7-注意要安装ruby环境运行-jekyll-主题才会出现具体安装操作见下文-安装ruby和jekyll">7. 注意：要安装ruby环境，运行 jekyll 主题才会出现！具体安装操作见下文 【安装ruby和jekyll】</h5>
+
+<h3 id="二安装ruby和jekyll">二、安装ruby和jekyll</h3>
+<blockquote>
+  <p><a href="https://mojotv.cn/2019/07/13/install-jekyll-in-windows10">参考 - windows10安装jekyll和ruby环境</a> - 下文多处摘自该文章。</p>
+</blockquote>
+
+<h4 id="安装ruby">安装Ruby</h4>
+<h5 id="1-下载ruby-到-rubyinstaller-中下载-rubydevkit-xxx版本-版本可自行选择注意区分-3264-位">1. 下载ruby, 到 <a href="https://rubyinstaller.org/downloads/">RubyInstaller</a> 中下载 Ruby+Devkit X.X.X版本 （版本可自行选择，注意区分 32/64 位）。</h5>
+<h5 id="2-安装ruby-点击下载好的-rubyinstaller-直接安装-注意勾选添加到path选项">2. 安装ruby, 点击下载好的 rubyInstaller 直接安装。 注意：勾选添加到PATH选项</h5>
+
+<p><img src="https://mojotv.cn/assets/image/ruby_01.png" alt="安装界面" /></p>
+
+<h5 id="3-安装完成后会出现-rubyinstaller-界面选择-3-安装msys2-and-mingw-development-toolchain">3. 安装完成后会出现 RubyInstaller 界面。选择 3 (安装MSYS2 and MINGW development toolchain)</h5>
+<p><img src="https://mojotv.cn/assets/image/ruby_02.png" alt="安装完成" /></p>
+
+<h4 id="下载gem-安装jekyll">下载gem 安装jekyll</h4>
+<h5 id="1-下载-rubygems-到download-rubygems下载-zip-版">1. 下载 RubyGems, 到<a href="https://rubygems.org/pages/download">Download RubyGems</a>下载 zip 版。</h5>
+<h5 id="2-安装gem在解压文件夹中最外层安装-jekyll">2. 安装gem，在解压文件夹中最外层安装 jekyll</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 在解压文件夹中最外层打开cmd
+
+gem <span class="nb">install </span>jekyll
+gem <span class="nb">install </span>jekyll-paginate
+jekyll <span class="nt">-v</span>                   // 检查版本
+</code></pre></div></div>
+<h5 id="3-安装bundle">3. 安装bundle</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler
+
+// 如果安装完成后使用 bundle 报错，有可能是版本问题，根据提示重新安装制定版本
+
+gem <span class="nb">install </span>bundler:1.16.2
+</code></pre></div></div>
+
+<h4 id="在项目文件夹中执行">在项目文件夹中执行</h4>
+<blockquote>
+  <p>打开项目所在文件夹的cmd</p>
+</blockquote>
+
+<h5 id="1-安装依赖">1. 安装依赖</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<h5 id="2-启动jekyll服务">2. 启动jekyll服务</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+<p><img src="https://i.loli.net/2020/01/08/iWebtXz92xMHwpI.png" alt="jekyll启动成功.png" /></p>
+
+<h3 id="添加评论">添加评论</h3>
+<blockquote>
+  <p><a href="https://blog.zxbing0066.com/jekyll/2014/11/12/disqus.html">在jekyll中使用disqus</a></p>
+</blockquote>
+
+<h3 id="遇到的问题">遇到的问题</h3>
+<h5 id="1-在执行-bundle-exec-jekyll-serve-时提示以下错误">1. 在执行 <code class="highlighter-rouge">bundle exec jekyll serve</code> 时，提示以下错误。</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 节选部分
+Could not find gem <span class="s1">'ruby (&lt; 2.6)'</span>, which is required by gem <span class="s1">'ffi (&gt;= 0.5.0, &lt; 2)'</span>, <span class="k">in </span>any of the relevant sources: the <span class="nb">local </span>ruby installation
+</code></pre></div></div>
+<p>原因：bundle不兼容当前ruby版本。
+解决：所以重新安装小于2.6的版本。</p>
+
+<h5 id="2-在部署到github之后页面获取不到cssjs等文件导致页面没有样式等问题">2. 在部署到github之后，页面获取不到css/js等文件，导致页面没有样式等问题。</h5>
+
+<p>原因：在设置本项目的仓库名时要设置为 <code class="highlighter-rouge">username.github.io</code>，也就是 <code class="highlighter-rouge">你的github用户名.github.io</code>！！！</p>
+
+<p><img src="https://i.loli.net/2020/01/09/U4lhzXOmdeNRWuQ.png" alt="报错1.png" /></p>
+
+<p><img src="https://i.loli.net/2020/01/09/RkdLnsiKTQHr84p.png" alt="报错.png" /></p>
+
+<h5 id="3-导航条上的-favicon-图片没有显示出来正确的应该如下所示">3. 导航条上的 favicon 图片没有显示出来，正确的应该如下所示。</h5>
+
+<p><img src="https://i.loli.net/2020/01/09/aIoF6V4hsnrNz2S.png" alt="favicon.png" /></p>
+
+<p>原因：本项目中该图标命名为 <code class="highlighter-rouge">profile.jpeg</code></p>
+
+<p>解决：将图标改命名为 <code class="highlighter-rouge">favicon.png</code>, 如果还是不显示则加上 <code class="highlighter-rouge">type="image/png"</code></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Favicon --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"/assets/favicon.png"</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/png"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"/assets/favicon.png"</span> <span class="na">rel=</span><span class="s">"apple-touch-icon-precomposed"</span>  <span class="na">type=</span><span class="s">"image/png"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+<p>补充：网络上的各种做法（还未一一验证）</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1.
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/png"</span> <span class="na">href=</span><span class="s">"/favicon.png"</span><span class="nt">&gt;</span>
+
+// 2.
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/x-icon"</span> <span class="na">href=</span><span class="s">"/favicon.ico?"</span><span class="nt">&gt;</span>
+
+// 3.
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/png"</span> <span class="na">href=</span><span class="s">"/favicon.png"</span> <span class="nt">&gt;</span>
+
+// 4. 使用的是.ico
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/x-icon"</span> <span class="na">href=</span><span class="s">"/favicon.ico"</span> <span class="nt">&gt;</span>
+
+// 5.
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/x-icon"</span> <span class="na">href=</span><span class="s">"/images/favicon.ico"</span> <span class="nt">&gt;</span>
+
+// 6.
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/png"</span> <span class="na">href=</span><span class="s">"/favicon.png"</span> <span class="nt">&gt;</span>
+
+// 7.
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/png"</span> <span class="na">href=</span><span class="s">"http://localhost:4000/favicon.png"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+  <!-- 引入share模块 -->
+  
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+<section class="post-footer-item comment">
+    <div id="disqus_thread"></div>
+</section>
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+    (function() {
+        // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement("script");
+        s.src = "https://anuo.disqus.com/embed.js";
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript
+    >Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript"
+        >comments powered by Disqus.</a
+    ></noscript
+>
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="顶部切换页面" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Top
+    </div>
+  </a>
+  <a title="底部有disqus评论哦" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>阿糯的二三事 ©
+  
+  
+  2020
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
